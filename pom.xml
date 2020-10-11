@@ -4,24 +4,24 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>foo.bar</groupId>
+    <groupId>io.flux-capacitor.examples</groupId>
     <artifactId>root</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>common</module>
-        <module>adapter</module>
+        <module>web</module>
         <module>audittrail</module>
         <module>app</module>
     </modules>
 
     <name>Flux Capacitor app</name>
-    <description>Flux Capacitor app with common endpoints and components – fork this then change the groupId of the artifact</description>
-    <url>https://github.com/flux-capacitor-io/app-base</url>
+    <description>Basic banking app that uses Flux Capacitor</description>
+    <url>https://github.com/flux-capacitor-io/flux-examples-bank</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <flux-capacitor.version>0.215</flux-capacitor.version>
+        <flux-capacitor.version>0-SNAPSHOT</flux-capacitor.version>
         <swagger.version>2.1.1</swagger.version>
     </properties>
 
@@ -148,7 +148,7 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>adapter</artifactId>
+                <artifactId>web</artifactId>
                 <version>${project.version}</version>
                 <type>test-jar</type>
                 <scope>test</scope>

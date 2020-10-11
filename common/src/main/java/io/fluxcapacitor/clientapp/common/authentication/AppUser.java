@@ -42,6 +42,10 @@ public class AppUser implements User {
 
     @Override
     public boolean hasRole(String role) {
-        return roles.contains(role);
+        return hasRole(Role.valueOf(role));
+    }
+
+    public boolean hasRole(Role role) {
+        return roles.stream().anyMatch(role::matches);
     }
 }

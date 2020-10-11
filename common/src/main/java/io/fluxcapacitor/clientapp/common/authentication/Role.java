@@ -6,6 +6,8 @@ import java.util.EnumSet;
 
 @Getter
 public enum Role {
+    customer,
+    system,
     admin {
         @Override
         public Role[] getAssumedRoles() {

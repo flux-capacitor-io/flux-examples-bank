@@ -1,5 +1,7 @@
-# Flux Capacitor app base
-Basic Flux Capacitor app with common endpoints and components
+# Flux Capacitor bank
+Basic example of a banking application that uses Flux Capacitor.
+
+## Run in-memory
 
 To create a new app just create a new repository from this template and change the maven groupId to something else.
 
@@ -25,11 +27,3 @@ That's about it!
 - change groupId in all pom.xml's
 - in deploy-app.yml, change "replacewithmaster" with "master"
 - in common/pom.xml, change typescript generator target class "app-base" to the location of your models
-
-## Getting new updates
-
-To get new updates from app-base into your project, run this in your project:
-
-- `git remote add template [URL of the template repo]`
-- `git fetch --all`
-- `git merge template/[branch to merge]`
