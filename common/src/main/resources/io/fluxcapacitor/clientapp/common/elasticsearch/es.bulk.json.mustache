@@ -1,0 +1,11 @@
+{{#operations}}
+    { "{{action}}" : { "_index" : "{{index}}", "_type" : "{{type}}"{{#id}}, "_id" : "{{id}}"{{/id}} } }{{#json}}
+        {{json}}{{/json}}
+{{/operations}}
+{{! Example:
+    { "index" : { "_index" : "refdata_vessel", "_type" : "_doc" } }
+    {"imoCode": "1234567"}
+    { "delete" : { "_index" : "refdata_vessel", "_type" : "_doc", "_id" : "otherId" } }
+    { "update" : { "_index" : "refdata_vessel", "_type" : "_doc", "_id" : "yetOtherId" } }
+    {"imoCode": "5354987","name": "TENACIOUS TEST"}
+}}
