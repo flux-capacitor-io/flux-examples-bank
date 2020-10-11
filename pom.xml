@@ -21,7 +21,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <flux-capacitor.version>0-SNAPSHOT</flux-capacitor.version>
+        <flux-capacitor.version>0.226</flux-capacitor.version>
         <swagger.version>2.1.1</swagger.version>
     </properties>
 
