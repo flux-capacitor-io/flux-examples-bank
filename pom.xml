@@ -5,13 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.flux-capacitor.examples</groupId>
-    <artifactId>root</artifactId>
+    <artifactId>flux-examples-bank</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>common</module>
         <module>web</module>
-        <module>audittrail</module>
         <module>app</module>
     </modules>
 
@@ -22,7 +21,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <flux-capacitor.version>0.226</flux-capacitor.version>
-        <swagger.version>2.1.1</swagger.version>
     </properties>
 
     <dependencies>
@@ -46,13 +44,6 @@
             <artifactId>lombok</artifactId>
             <version>1.18.12</version>
             <scope>provided</scope>
-        </dependency>
-
-        <!--Swagger-->
-        <dependency>
-            <groupId>io.swagger.core.v3</groupId>
-            <artifactId>swagger-annotations</artifactId>
-            <version>${swagger.version}</version>
         </dependency>
 
         <!--testing -->
@@ -90,13 +81,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--common-->
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
             <!--serialization -->
             <dependency>
                 <groupId>com.fasterxml.jackson</groupId>
@@ -113,13 +97,6 @@
                 <version>5.2.2.RELEASE</version>
                 <scope>import</scope>
                 <type>pom</type>
-            </dependency>
-
-            <!--Swagger-->
-            <dependency>
-                <groupId>io.swagger.core.v3</groupId>
-                <artifactId>swagger-jaxrs2</artifactId>
-                <version>${swagger.version}</version>
             </dependency>
 
             <!--guava-->

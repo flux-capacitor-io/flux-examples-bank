@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AppUserProvider extends AbstractUserProvider {
-    public static final User adminSender = AppUser.builder().name("admin").role(Role.admin.name()).build();
+    public static final User systemUser = AppUser.builder().name("system").role(Role.admin.name()).build();
 
     public AppUserProvider() {
         super(AppUser.metadataKey, AppUser.class);
@@ -19,6 +19,6 @@ public class AppUserProvider extends AbstractUserProvider {
 
     @Override
     public User getSystemUser() {
-        return adminSender;
+        return systemUser;
     }
 }

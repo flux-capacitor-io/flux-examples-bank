@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>root</artifactId>
+        <artifactId>flux-examples-bank</artifactId>
         <groupId>io.flux-capacitor.examples</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
@@ -58,55 +58,5 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-jar-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>test-jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>cz.habarta.typescript-generator</groupId>
-                <artifactId>typescript-generator-maven-plugin</artifactId>
-                <version>2.18.565</version>
-                <executions>
-                    <execution>
-                        <id>generate-models</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <phase>process-classes</phase>
-                        <configuration>
-                            <jsonLibrary>jackson2</jsonLibrary>
-                            <customTypeMappings>
-                                <customTypeMapping>java.time.LocalDate:string</customTypeMapping>
-                                <customTypeMapping>java.time.LocalTime:string</customTypeMapping>
-                                <customTypeMapping>java.time.Instant:string</customTypeMapping>
-                            </customTypeMappings>
-                            <classPatterns>
-                                <classPattern>io.fluxcapacitor.clientapp.common.api.**</classPattern>
-                                <classPattern>io.fluxcapacitor.clientapp.app-base.**</classPattern>
-                            </classPatterns>
-                            <excludeClassPatterns>
-                                <excludeClassPattern>com.portbase.**Builder</excludeClassPattern>
-                                <excludeClassPattern>com.portbase.**BuilderImpl</excludeClassPattern>
-                                <excludeClassPattern>com.portbase.**Exception</excludeClassPattern>
-                                <excludeClassPattern>com.fasterxml.**</excludeClassPattern>
-                            </excludeClassPatterns>
-                                <outputKind>module</outputKind>
-                            <outputFile>target/typescript-generator/models.d.ts</outputFile>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
 
 </project>

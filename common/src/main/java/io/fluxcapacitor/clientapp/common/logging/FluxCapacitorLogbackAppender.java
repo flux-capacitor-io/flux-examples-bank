@@ -1,5 +1,6 @@
 package io.fluxcapacitor.clientapp.common.logging;
 
+import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.classic.spi.ThrowableProxy;
 import ch.qos.logback.core.AppenderBase;
@@ -19,9 +20,6 @@ import static org.apache.commons.lang3.exception.ExceptionUtils.getStackTrace;
 
 @Slf4j
 public class FluxCapacitorLogbackAppender extends AppenderBase<ILoggingEvent> {
-
-    private static final int MAX_ERROR_SIZE = 1024 * 1024; // max error size = 1MB
-
     @Override
     protected void append(ILoggingEvent event) {
         try {
@@ -32,26 +30,15 @@ public class FluxCapacitorLogbackAppender extends AppenderBase<ILoggingEvent> {
             metadata.putAll(Map.of("stackTrace", format("[%s] %s %s - %s%s", event.getThreadName(), event.getLevel(),
                                          event.getLoggerName(), event.getFormattedMessage(),
                                          throwable.map(e -> "\n" + getStackTrace(e)).orElse("")),
-                    "level", event.getLevel().toString()));
+                    "level", event.getLevel().toString(), "loggerName", event.getLoggerName()));
             throwable.ifPresentOrElse(e -> {
                 metadata.put("error", e.getClass().getSimpleName());
                 metadata.put("errorMessage", isBlank(e.getMessage()) ? event.getFormattedMessage() : e.getMessage());
                 Optional.ofNullable(e.getStackTrace()).filter(s -> s.length > 0)
                         .ifPresent(s -> metadata.put("traceElement", s[0].toString()));
             }, () -> metadata.put("errorMessage", event.getFormattedMessage()));
-
-            FluxCapacitor fluxCapacitor;
-            try {
-                fluxCapacitor = FluxCapacitor.get();
-            } catch (Throwable e) {
-                log.info("Not logging error to Flux Capacitor: {}", e.getMessage());
-                return;
-            }
-            if (event.getFormattedMessage().getBytes().length > MAX_ERROR_SIZE) {
-                log.warn("Not logging error to Flux Capacitor: error is larger than max error size");
-                return;
-            }
-            fluxCapacitor.errorGateway().report(new ConsoleError(), metadata);
+            FluxCapacitor.get().errorGateway().report(
+                    event.getLevel() == Level.WARN ? new ConsoleWarning() : new ConsoleError(), metadata);
         } catch (Throwable e) {
             log.info("Failed to publish console error", e);
         }

@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>root</artifactId>
+        <artifactId>flux-examples-bank</artifactId>
         <groupId>io.flux-capacitor.examples</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
@@ -14,26 +14,11 @@
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>web</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>audittrail</artifactId>
+            <artifactId>common</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <!-- testing -->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>web</artifactId>
-            <type>test-jar</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>common</artifactId>
-            <type>test-jar</type>
-        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
@@ -42,13 +27,6 @@
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <directory>config</directory>
-                <targetPath>config</targetPath>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
