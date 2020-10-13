@@ -43,6 +43,7 @@ services:
       - MESSAGING_ENDPOINT=ws://flux-capacitor:8080
     ports:
       - "8090:8080"
+      - "5100:5005" #debugging
 
 volumes:
   config:

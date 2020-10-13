@@ -1,28 +1,52 @@
-import {AfterViewInit, Component} from '@angular/core';
+import {Component} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie';
 import tokens from "../../utils/jwt-generator/src/tokens";
-import {sendQuery} from './common/utils';
+import {sendCommand, sendQuery} from './common/utils';
+import {environment} from '../environments/environment';
+
+
+declare var $: any;
+
+export const userId = "admin@flux-bank.com";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit {
-  title = 'flux-bank';
+export class AppComponent {
+  account;
 
   constructor(private httpClient: HttpClient, cookieService: CookieService) {
-    cookieService.put("jwt", tokens["admin@flux-bank.com"]);
+    if (environment.connected) {
+      cookieService.put("jwt", tokens[userId]);
+
+      httpClient.get("/api/health", {responseType: 'text'})
+        .subscribe(() => console.log("server healthy"));
+    }
   }
 
-  ngAfterViewInit(): void {
-    this.httpClient.get("/api/health", {responseType: 'text'})
-      .subscribe(() => console.log("server healthy"));
-
-    sendQuery("io.fluxcapacitor.clientapp.common.bank.query.GetAccount", {accountId: "unknown"})
-      .subscribe(r => console.log(r));
+  createAccount(createCommand, modal) {
+    createCommand.userId = userId;
+    sendCommand("io.fluxcapacitor.clientapp.common.bank.command.CreateAccount", createCommand,
+      () => {
+        this.account = createCommand;
+        $(modal).modal('hide');
+      });
   }
 
+  login(accountId: string, modal) {
+    sendQuery("io.fluxcapacitor.clientapp.common.bank.query.GetAccount", {accountId: accountId}, {caching: false})
+      .subscribe(r => {
+        if (r) {
+          this.account = r;
+          $(modal).modal('hide');
+        }
+      });
+  }
 
+  logout() {
+    this.account = null;
+  }
 }

@@ -17,3 +17,12 @@ export function sendCommand(type: string, payload: any, successHandler?: (value:
     .subscribe(successHandler ? successHandler : () => {},
       errorHandler ? errorHandler : (error) => console.error(error));
 }
+
+export function refreshAccount(account) {
+  sendQuery("io.fluxcapacitor.clientapp.common.bank.query.GetAccount", {accountId: account.accountId}, {caching: false})
+    .subscribe(r => {
+      if (r) {
+        Object.assign(account, r);
+      }
+    });
+}

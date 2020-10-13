@@ -1,0 +1,16 @@
+<h4>Transfer money</h4>
+
+<div class="form-group">
+  <label>Amount (€)</label>
+  <input [(ngModel)]="amount" type="number" class="form-control"
+         placeholder="Enter amount">
+</div>
+
+<div class="form-group">
+  <label>Recipient</label>
+  <input [(ngModel)]="destinationAccountId" class="form-control" placeholder="Enter account id of recipient">
+</div>
+
+<button type="button" class="btn btn-primary" (click)="transfer()">
+  Transfer
+</button>

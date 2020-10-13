@@ -1,0 +1,11 @@
+<h4>Deposit money</h4>
+
+<div class="form-group">
+  <label>Amount (€)</label>
+  <input [(ngModel)]="amount" type="number" class="form-control"
+         placeholder="Enter amount">
+</div>
+
+<button type="button" class="btn btn-primary" (click)="deposit()">
+  Deposit
+</button>

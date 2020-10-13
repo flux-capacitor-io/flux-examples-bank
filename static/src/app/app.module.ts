@@ -8,14 +8,24 @@ import {CookieModule} from 'ngx-cookie';
 import {CommandGateway} from './common/command-gateway';
 import {QueryGateway} from './common/query-gateway';
 import {InjectorProvider} from './common/injector-provider';
+import {CreateAccountComponent} from './create-account/create-account.component';
+import {FormsModule} from '@angular/forms';
+import {DepositMoneyComponent} from './deposit-money/deposit-money.component';
+import {LoginComponent} from './login/login.component';
+import {TransferMoneyComponent} from './transfer-money/transfer-money.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CreateAccountComponent,
+    DepositMoneyComponent,
+    LoginComponent,
+    TransferMoneyComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    FormsModule,
     CookieModule.forRoot(),
     AppRoutingModule
   ],

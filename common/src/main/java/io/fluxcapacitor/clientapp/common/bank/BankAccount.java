@@ -15,14 +15,11 @@ import java.math.BigDecimal;
 @Builder(toBuilder = true)
 public class BankAccount {
     @NotBlank String accountId, userId;
-
-    @Builder.Default
-    @NotNull @PositiveOrZero BigDecimal maxOverdraft = BigDecimal.ZERO;
+    @NotNull @PositiveOrZero BigDecimal maxOverdraft;
+    boolean closed;
 
     @Builder.Default
     @NotNull BigDecimal balance = BigDecimal.ZERO;
-
-    boolean closed;
 
     public static BankAccount load(String accountId) {
         return FluxCapacitor.loadAggregate(accountId, BankAccount.class).get();

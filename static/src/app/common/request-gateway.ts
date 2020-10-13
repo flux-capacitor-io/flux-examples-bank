@@ -1,5 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
+import {v4 as uuid} from 'uuid';
 
 export abstract class RequestGateway {
   private handlers = [];
@@ -43,6 +44,7 @@ function asMessage(payload: any, type: string) {
   if (payload['@class'] === 'io.fluxcapacitor.javaclient.common.Message') {
     payload.metadata = payload.metadata || {};
     payload.payload["@class"] = type;
+    payload.id = uuid();
     return payload;
   }
 
@@ -51,6 +53,7 @@ function asMessage(payload: any, type: string) {
   return {
     "@class": 'io.fluxcapacitor.javaclient.common.Message',
     payload: payload,
-    metadata: {}
+    metadata: {},
+    id: uuid()
   }
 }
