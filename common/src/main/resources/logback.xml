@@ -1,19 +1,23 @@
 <configuration>
-  <appender name="FluxCapacitor" class="io.fluxcapacitor.clientapp.common.logging.FluxCapacitorLogbackAppender">
-    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-      <level>WARN</level>
-    </filter>
-  </appender>
+    <appender name="Console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="FluxCapacitor" class="io.fluxcapacitor.clientapp.common.logging.FluxCapacitorLogbackAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+    </appender>
 
-  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-    <encoder>
-      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
-    </encoder>
-  </appender>
+    <logger name="org.hibernate" level="WARN" />
+    <logger name="org.jboss" level="WARN" />
+    <logger name="org.xnio" level="WARN" />
+    <logger name="io.undertow" level="WARN" />
 
-  <root level="info">
-    <appender-ref ref="STDOUT" />
-    <appender-ref ref="FluxCapacitor" />
-  </root>
+    <root level="info">
+        <appender-ref ref="Console"/>
+        <appender-ref ref="FluxCapacitor"/>
+    </root>
 
 </configuration>

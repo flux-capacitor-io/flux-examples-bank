@@ -24,6 +24,15 @@ services:
     environment:
       - MESSAGING_ENDPOINT=ws://flux-capacitor:8080
 
+  bank-app-2:
+    depends_on:
+      - flux-capacitor
+    build:
+      context: ./app/.
+    image: bank-app:tag
+    environment:
+      - MESSAGING_ENDPOINT=ws://flux-capacitor:8080
+
   bank-web:
     depends_on:
       - flux-capacitor
