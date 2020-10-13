@@ -2,4 +2,4 @@
 target/
 .idea/
 *.iml
-postgres-data/
+/postgres-data
