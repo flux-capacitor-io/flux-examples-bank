@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
-import {refreshAccount, sendCommand} from '../common/utils';
+import {AppContext} from '../app-context';
+import {sendCommand} from '../common/command-gateway';
 
 @Component({
   selector: 'app-deposit-money',
@@ -15,7 +16,7 @@ export class DepositMoneyComponent {
       {"accountId" : this.account.accountId, "amount" : this.amount},
       () => {
         this.amount = null;
-        refreshAccount(this.account);
+        AppContext.refreshAccount(this.account);
       });
   }
 }

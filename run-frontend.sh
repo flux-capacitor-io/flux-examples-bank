@@ -7,7 +7,6 @@ reset=`tput sgr0`
 set -e
 
 printf "\n%s\n" "${blue}${bold}----------------------Starting frontend----------------------${reset}"
-npm install --prefix static
 npm run --prefix static docker
 
 printf "\n%s\n" "${blue}${bold}-----------------------------Done------------------------------${reset}"

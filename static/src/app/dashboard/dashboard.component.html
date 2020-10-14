@@ -1,0 +1,28 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#actions" role="tab">Actions</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#transactions" role="tab">Transactions</a>
+  </li>
+  <li class="ml-auto nav-link border-0">
+    <span class="mx-3 font-weight-bold">{{account.accountId}}</span> €{{account.balance}}
+  </li>
+</ul>
+
+<div class="tab-content mt-3">
+  <div class="tab-pane show active" id="actions" role="tabpanel">
+    <div class="row justify-content-center">
+      <div class="col-md-6 my-2">
+        <app-deposit-money [account]="account"></app-deposit-money>
+      </div>
+
+      <div class="col-md-6 my-2">
+        <app-transfer-money [account]="account"></app-transfer-money>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane" id="transactions" role="tabpanel">
+    <app-transactions [account]="account"></app-transactions>
+  </div>
+</div>

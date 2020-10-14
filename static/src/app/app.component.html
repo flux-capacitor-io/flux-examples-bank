@@ -1,13 +1,8 @@
 <div class="container py-5">
 
   <ng-container *ngIf="account; else noAccount">
-    <div class="row justify-content-center">
-      <div class="col">
-        Signed in to account <span class="font-weight-bolder">{{account.accountId}}</span>
-        <pre class="mt-2">{{account | json}}</pre>
-      </div>
-
-      <div class="col-auto">
+    <div class="row mb-4">
+      <div class="col-auto ml-auto">
         <button type="button" class="btn btn-secondary mr-3" (click)="logout()">
           Log out
         </button>
@@ -16,17 +11,9 @@
           Switch accounts
         </button>
       </div>
-
-      <div class="w-100"></div>
-
-      <div class="col-md-6 my-2">
-        <app-deposit-money [account]="account"></app-deposit-money>
-      </div>
-
-      <div class="col-md-6 my-2">
-        <app-transfer-money [account]="account"></app-transfer-money>
-      </div>
     </div>
+
+    <app-dashboard [account]="account"></app-dashboard>
   </ng-container>
 
   <ng-template #noAccount>

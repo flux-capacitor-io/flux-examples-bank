@@ -1,0 +1,4 @@
+<div class="row" *ngFor="let t of account.transactions">
+  <div class="col-3">{{t.timestamp | date:'medium' }}</div>
+  <div class="col">{{t.description}}</div>
+</div>

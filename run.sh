@@ -17,7 +17,7 @@ mvn -q clean install -DskipTests -T 4
 
 printf "\n%s\n" "${blue}${bold}----------------------Build Docker images----------------------${reset}"
 docker-compose build
-docker-compose up -d
+docker-compose up -d --scale bank-app=2
 
 printf "\n%s\n" "${blue}${bold}----------------------Starting frontend----------------------${reset}"
 npm install --prefix static

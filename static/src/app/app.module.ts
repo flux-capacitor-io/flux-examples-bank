@@ -13,6 +13,10 @@ import {FormsModule} from '@angular/forms';
 import {DepositMoneyComponent} from './deposit-money/deposit-money.component';
 import {LoginComponent} from './login/login.component';
 import {TransferMoneyComponent} from './transfer-money/transfer-money.component';
+import {DashboardComponent} from './dashboard/dashboard.component';
+import {TransactionsComponent} from './transactions/transactions.component';
+import {StatusAlertComponent} from './common/status-alert/status-alert.component';
+import {AlertingComponent} from './common/alerting/alerting.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import {TransferMoneyComponent} from './transfer-money/transfer-money.component'
     CreateAccountComponent,
     DepositMoneyComponent,
     LoginComponent,
-    TransferMoneyComponent
+    TransferMoneyComponent,
+    DashboardComponent,
+    TransactionsComponent,
+    StatusAlertComponent,
+    AlertingComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,18 @@
+<div id="alerts" class="mx-n1">
+  <div class="pt-2">
+    <div *ngFor="let alert of appContext.alerts.slice(0, maxAlertCount)">
+      <app-status-alert [type]="alert.level" (close)="appContext.closeAlerts(alert)" [msShowTime]="alert.msShowTime">{{alert.content}}</app-status-alert>
+    </div>
+    <div *ngIf="appContext.alerts.length > maxAlertCount">
+      <div class="collapse" id="alertsColapse">
+        <div *ngFor="let alert of appContext.alerts.slice(maxAlertCount)">
+          <app-status-alert [type]="alert.level" (close)="appContext.closeAlerts(alert)" [msShowTime]="alert.msShowTime">{{alert.content}}</app-status-alert>
+        </div>
+      </div>
+      <button class="btn btn-outline-danger float-right collapsed" type="button" data-toggle="collapse" data-target="#alertsColapse">
+        <span class="more-alerts-button">Show more errors</span>
+        <span class="fewer-alerts-button">Show fewer errors</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -2,8 +2,9 @@ import {Component} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie';
 import tokens from "../../utils/jwt-generator/src/tokens";
-import {sendCommand, sendQuery} from './common/utils';
 import {environment} from '../environments/environment';
+import {sendQuery} from './common/query-gateway';
+import {sendCommand} from './common/command-gateway';
 
 
 declare var $: any;

@@ -3,6 +3,7 @@ package io.fluxcapacitor.clientapp.common.bank.command;
 import io.fluxcapacitor.clientapp.common.authentication.RequiresAppRole;
 import io.fluxcapacitor.clientapp.common.authentication.Role;
 import io.fluxcapacitor.clientapp.common.bank.BankAccount;
+import io.fluxcapacitor.clientapp.common.bank.Transaction;
 import io.fluxcapacitor.javaclient.persisting.eventsourcing.Apply;
 import lombok.Value;
 
@@ -20,6 +21,9 @@ public class DepositTransfer implements ModifyAccount {
 
     @Apply
     BankAccount apply(BankAccount account) {
-        return account.toBuilder().balance(account.getBalance().add(amount)).build();
+        return account.toBuilder().balance(account.getBalance().add(amount))
+                .transaction(Transaction.create("Transfer of €" + amount.toPlainString() + " from " + sourceAccountId))
+                .build();
     }
+
 }

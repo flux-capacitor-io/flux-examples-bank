@@ -1,8 +1,9 @@
 import {RequestGateway} from './request-gateway';
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
+import {Observable, of, Subscriber} from 'rxjs';
 import {tap} from 'rxjs/operators';
+import {InjectorProvider} from './injector-provider';
 
 @Injectable()
 export class QueryGateway extends RequestGateway {
@@ -45,4 +46,13 @@ export interface QueryOptions {
   showSpinner?: boolean;
   hideError?: boolean;
   responseType? : string;
+}
+
+export function sendQuery(type: string, payload: any, options ?: any): Observable<any> {
+  if (!InjectorProvider.injector) {
+    return new Observable((subscriber: Subscriber<any>) => {
+      InjectorProvider.injector.get(QueryGateway).send(type, payload, options).subscribe(subscriber);
+    });
+  }
+  return InjectorProvider.injector.get(QueryGateway).send(type, payload, options);
 }

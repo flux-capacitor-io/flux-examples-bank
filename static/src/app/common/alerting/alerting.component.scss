@@ -1,0 +1,13 @@
+[data-toggle="collapse"] {
+  .more-alerts-button {
+    display: none;
+  }
+
+  &.collapsed .more-alerts-button {
+    display: inline;
+  }
+
+  &.collapsed .fewer-alerts-button {
+    display: none;
+  }
+}
