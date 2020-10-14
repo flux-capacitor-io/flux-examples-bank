@@ -18,7 +18,7 @@ public class AccountCommandHandler {
     }
 
     @HandleCommand
-    void handleDeposit(DepositTransfer command) {
+    void handleTransfer(DepositTransfer command) {
         try {
             handle(command);
         } catch (Exception e) {
