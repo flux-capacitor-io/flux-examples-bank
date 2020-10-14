@@ -1,6 +1,6 @@
 package io.fluxcapacitor.clientapp.web;
 
-import io.fluxcapacitor.clientapp.common.PropertyUtils;
+import io.fluxcapacitor.clientapp.common.ApplicationUtils;
 import io.fluxcapacitor.clientapp.web.authentication.AuthenticationFilter;
 import io.fluxcapacitor.clientapp.web.config.ErrorMapper;
 import io.fluxcapacitor.clientapp.web.config.JacksonConfig;
@@ -33,7 +33,7 @@ public class WebMain extends Application {
     public WebMain() {
         singletons = Stream.of(new JacksonConfig(), new ErrorMapper(), new HealthEndpoint(), new AuthenticationFilter(),
                                new MainEndpoint()).collect(toSet());
-        if (PropertyUtils.isDevMode()) {
+        if (ApplicationUtils.isDevMode()) {
             log.info("Starting adapter in dev mode");
         }
     }

@@ -8,7 +8,9 @@ import org.springframework.context.annotation.ClassPathScanningCandidateComponen
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 
-import static io.fluxcapacitor.clientapp.common.PropertyUtils.loadApplicationProperties;
+import java.util.Optional;
+
+import static java.lang.System.getProperty;
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
 
@@ -16,8 +18,6 @@ import static java.util.stream.Collectors.toList;
 public class ApplicationUtils {
 
     public static void startSpringApplication() {
-        loadApplicationProperties();
-
         ClassPathScanningCandidateComponentProvider scanner
                 = new ClassPathScanningCandidateComponentProvider(false);
         scanner.addIncludeFilter(new AnnotationTypeFilter(Configuration.class));
@@ -29,6 +29,10 @@ public class ApplicationUtils {
 
         log.info("Loaded Spring configurations: {}",
                  stream(configurations).map(Class::getSimpleName).collect(toList()));
+    }
+
+    public static boolean isDevMode() {
+        return Optional.ofNullable(getProperty("devMode")).map(Boolean::valueOf).orElse(false);
     }
 
     @SneakyThrows

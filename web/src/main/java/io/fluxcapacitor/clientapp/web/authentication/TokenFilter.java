@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import static io.fluxcapacitor.clientapp.common.PropertyUtils.isDevMode;
+import static io.fluxcapacitor.clientapp.common.ApplicationUtils.isDevMode;
 import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toMap;
 import static javax.ws.rs.core.HttpHeaders.COOKIE;
