@@ -5,6 +5,7 @@ import tokens from "../../utils/jwt-generator/src/tokens";
 import {environment} from '../environments/environment';
 import {sendQuery} from './common/query-gateway';
 import {sendCommand} from './common/command-gateway';
+import {AppContext} from './app-context';
 
 
 declare var $: any;
@@ -32,7 +33,7 @@ export class AppComponent {
     createCommand.userId = userId;
     sendCommand("io.fluxcapacitor.clientapp.common.bank.command.CreateAccount", createCommand,
       () => {
-        this.account = createCommand;
+        AppContext.refreshAccount(this.account = createCommand);
         $(modal).modal('hide');
       });
   }
