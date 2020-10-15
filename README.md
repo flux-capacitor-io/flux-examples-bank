@@ -28,6 +28,10 @@ respectively) to Flux Capacitor. It also establishes the identity of the user (v
 All commands and queries are handled by the app instances, so business rules are applied only there.
 
 ## Build and run
+Make sure you have the `ARTIFACTORY_ENCRYPTED_PASSWORD` set as an environment variable (e.g. in your `.bash_profile`).
+
+    export ARTIFACTORY_ENCRYPTED_PASSWORD=xxxxxxx
+
 Execute `./run.sh` for the initial run. This performs a Maven build, builds and launches the dockers configured in
 `docker-compose.yml` and launches the frontend.
 
