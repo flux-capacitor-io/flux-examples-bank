@@ -15,21 +15,21 @@ services:
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
 
-  bank-app:
+  app:
     depends_on:
       - flux-capacitor
     build:
       context: ./app/.
-    image: bank-app:tag
+    image: app:tag
     environment:
       - MESSAGING_ENDPOINT=ws://flux-capacitor:8080
 
-  bank-web:
+  web:
     depends_on:
       - flux-capacitor
     build:
       context: ./web/.
-    image: bank-web:tag
+    image: web:tag
     environment:
       - MESSAGING_ENDPOINT=ws://flux-capacitor:8080
     ports:
