@@ -31,8 +31,7 @@ public class AppUser implements User {
     }
 
     public Metadata addTo(Metadata metadata) {
-        metadata.put(metadataKey, this);
-        return metadata;
+        return metadata.with(metadataKey, this);
     }
 
     @JsonIgnore

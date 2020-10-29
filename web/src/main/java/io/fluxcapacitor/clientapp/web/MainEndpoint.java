@@ -69,10 +69,8 @@ public class MainEndpoint {
     }
 
     private Metadata addHeadersToMetadata(Metadata metadata, HttpHeaders headers) {
-        metadata.put("ipAddress", headers.getRequestHeader("X-Forwarded-For").stream().findFirst()
-                .orElse("Unknown IP address"));
-        metadata.put("userAgent", headers.getHeaderString(USER_AGENT));
-        return metadata;
+        return metadata.with("ipAddress", headers.getRequestHeader("X-Forwarded-For").stream().findFirst()
+                .orElse("Unknown IP address"), "userAgent", headers.getHeaderString(USER_AGENT));
     }
 
 }
