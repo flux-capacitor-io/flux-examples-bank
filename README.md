@@ -37,3 +37,7 @@ Execute `./run.sh` for the initial run. This performs a Maven build, builds and 
 
 For later runs you're recommended to execute `./run-backend.sh` and / or `./run-frontend.sh` as they launch a little
 faster.
+
+## Troubleshooting
+For Linux users: Make sure that the user you are runnng the scripts with is a member of the `docker` group
+For Windows users: If you're having database(postgres) troubles while running the backend try removing the `volumes` section and its value inside the `flux-capacitor` service
