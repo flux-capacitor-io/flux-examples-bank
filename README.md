@@ -39,5 +39,5 @@ For later runs you're recommended to execute `./run-backend.sh` and / or `./run-
 faster.
 
 ## Troubleshooting
-* For Linux users: Make sure that the user you are runnng the scripts with is a member of the `docker` group.
+* For Linux users: Make sure that the user you are running the scripts with is a member of the `docker` user group.
 * For Windows users: If you're having database(postgres) troubles while running the backend try removing the `volumes` section and its value inside the `flux-capacitor` service.
