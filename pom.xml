@@ -20,7 +20,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <flux-capacitor.version>0.232</flux-capacitor.version>
+        <flux-capacitor.version>0.280</flux-capacitor.version>
     </properties>
 
     <dependencies>
