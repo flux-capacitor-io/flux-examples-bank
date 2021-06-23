@@ -10,7 +10,7 @@ printf "\n%s\n" "${blue}${bold}----------------------Maven build----------------
 mvn -q clean install -DskipTests -T 4
 
 printf "\n%s\n" "${blue}${bold}----------------------Build Docker images----------------------${reset}"
-docker-compose build web app
-docker-compose up -d --scale app=2 --remove-orphans
+docker-compose build
+docker-compose up --force-recreate -d --scale app=2
 
 printf "\n%s\n" "${blue}${bold}-----------------------------Done------------------------------${reset}"
