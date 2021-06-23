@@ -1,5 +1,6 @@
 package io.fluxcapacitor.clientapp.web;
 
+import io.fluxcapacitor.clientapp.common.logging.LoggingInterceptor;
 import io.fluxcapacitor.javaclient.configuration.FluxCapacitorBuilder;
 import io.fluxcapacitor.javaclient.configuration.client.Client;
 import io.fluxcapacitor.javaclient.configuration.client.WebSocketClient;
@@ -27,7 +28,8 @@ public class WebConfig {
 
     @Autowired
     public void configure(FluxCapacitorBuilder builder) {
-        builder.enableTrackingMetrics();
+        builder.enableTrackingMetrics()
+                .addDispatchInterceptor(LoggingInterceptor.instance).addHandlerInterceptor(LoggingInterceptor.instance);
     }
 }
 
