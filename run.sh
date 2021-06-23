@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-if [[ "$ARTIFACTORY_ENCRYPTED_PASSWORD" == "" ]]; then
-  echo "Please set your ARTIFACTORY_ENCRYPTED_PASSWORD environment variable"
-  echo "For example by \"export ARTIFACTORY_ENCRYPTED_PASSWORD=xxxxx\""
-  exit 1
-fi
-
 blue=`tput setaf 4`
 bold=`tput bold`
 reset=`tput sgr0`

@@ -17,7 +17,7 @@ The application shows how you can safely transfer money between 2 accounts, with
 ## The setup
 A docker compose file configures the setup.
 Once everything is started (see below) the following is running:
-- 1 Flux Capacitor instance
+- 1 Flux Capacitor instance at `http://localhost:8888`
 - 2 instances of app
 - 1 instance of web at `http://localhost:8090`
 - Angular dev server at `http://localhost:4200`
@@ -28,10 +28,6 @@ respectively) to Flux Capacitor. It also establishes the identity of the user (v
 All commands and queries are handled by the app instances, so business rules are applied only there.
 
 ## Build and run
-Make sure you have the `ARTIFACTORY_ENCRYPTED_PASSWORD` set as an environment variable (e.g. in your `.bash_profile`).
-
-    export ARTIFACTORY_ENCRYPTED_PASSWORD=xxxxxxx
-
 Execute `./run.sh` for the initial run. This performs a Maven build, builds and launches the dockers configured in
 `docker-compose.yml` and launches the frontend.
 
@@ -40,4 +36,3 @@ faster.
 
 ## Troubleshooting
 * For Linux users: Make sure that the user you are running the scripts with is a member of the `docker` user group.
-* For Windows users: If you're having database(postgres) troubles while running the backend try removing the `volumes` section and its value inside the `flux-capacitor` service.

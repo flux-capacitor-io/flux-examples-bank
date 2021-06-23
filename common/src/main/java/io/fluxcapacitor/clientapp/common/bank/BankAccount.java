@@ -1,6 +1,6 @@
 package io.fluxcapacitor.clientapp.common.bank;
 
-import io.fluxcapacitor.javaclient.persisting.eventsourcing.EventSourced;
+import io.fluxcapacitor.javaclient.persisting.eventsourcing.Aggregate;
 import lombok.Builder;
 import lombok.Singular;
 import lombok.Value;
@@ -8,7 +8,7 @@ import lombok.Value;
 import java.math.BigDecimal;
 import java.util.List;
 
-@EventSourced
+@Aggregate
 @Value
 @Builder(toBuilder = true)
 public class BankAccount {
