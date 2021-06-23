@@ -1,19 +1,7 @@
 version: '3'
 services:
   flux-capacitor:
-    build:
-      context: .
-      dockerfile: Dockerfile-flux-capacitor
-      args:
-        - FLUX_VERSION=736
-        - ARTIFACTORY_URL=https://artifactory.portbase.io/artifactory
-        - ARTIFACTORY_USER=readonly:${ARTIFACTORY_ENCRYPTED_PASSWORD}
-    image: flux-capacitor:tag
-    environment:
-      - DROP_DATABASE=${dropDatabase:-false}
-      - POSTGRES_PASSWORD=example
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+    image: fluxcapacitorio/flux-capacitor-test:latest
 
   app:
     depends_on:
@@ -22,7 +10,7 @@ services:
       context: ./app/.
     image: app:tag
     environment:
-      - MESSAGING_ENDPOINT=ws://flux-capacitor:8080
+      - MESSAGING_ENDPOINT=ws://flux-capacitor:8888
 
   web:
     depends_on:
@@ -31,7 +19,7 @@ services:
       context: ./web/.
     image: web:tag
     environment:
-      - MESSAGING_ENDPOINT=ws://flux-capacitor:8080
+      - MESSAGING_ENDPOINT=ws://flux-capacitor:8888
     ports:
       - "8090:8080"
       - "5100:5005" #debugging
