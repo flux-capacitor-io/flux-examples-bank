@@ -19,7 +19,9 @@ public enum LoggingInterceptor implements HandlerInterceptor, DispatchIntercepto
     public Function<Message, SerializedMessage> interceptDispatch(Function<Message, SerializedMessage> function,
                                                                   MessageType messageType) {
         return m -> {
-            log.info("Sending {} {}", messageType.name().toLowerCase(), m.getPayload());
+            if (MessageType.METRICS != messageType) {
+                log.info("Sending {} {}", messageType.name().toLowerCase(), m.getPayload());
+            }
             return function.apply(m);
         };
     }
@@ -29,8 +31,10 @@ public enum LoggingInterceptor implements HandlerInterceptor, DispatchIntercepto
                                                                     Handler<DeserializingMessage> handler,
                                                                     String consumer) {
         return m -> {
-            log.info("Handling a {} {} in {}",
-                     m.getPayloadClass().getSimpleName(), m.getMessageType().name().toLowerCase(), handler);
+            if (MessageType.METRICS != m.getMessageType()) {
+                log.info("Handling a {} {} in {}", m.getPayloadClass().getSimpleName(),
+                         m.getMessageType().name().toLowerCase(), handler);
+            }
             return function.apply(m);
         };
     }
