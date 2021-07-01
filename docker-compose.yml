@@ -10,7 +10,7 @@ services:
       - flux-capacitor
     build:
       context: ./web/.
-    image: web:tag
+    image: bank-sample-web:tag
     environment:
       - MESSAGING_ENDPOINT=ws://flux-capacitor:8888
     ports:
@@ -22,7 +22,7 @@ services:
       - flux-capacitor
     build:
       context: ./app/.
-    image: app:tag
+    image: bank-sample-app:tag
     environment:
       - MESSAGING_ENDPOINT=ws://flux-capacitor:8888
 
