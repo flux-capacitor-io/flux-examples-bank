@@ -22,7 +22,7 @@ public class AccountCommandHandler {
         try {
             handle(command);
         } catch (Exception e) {
-            throw new TransferFailed("Failed to complete transfer", command);
+            throw new TransferFailed("Failed to complete transfer: " + e.getMessage(), command);
         }
     }
 }
