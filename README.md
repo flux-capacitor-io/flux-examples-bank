@@ -28,6 +28,10 @@ respectively) to Flux Capacitor. It also establishes the identity of the user (v
 All commands and queries are handled by the app instances, so business rules are applied only there.
 
 ## Build and run
+To build, you need to have [Node.js](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+and [Maven](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) installed locally.
+To run you need [Docker](https://docs.docker.com/get-docker/).
+
 Execute `./run.sh` for the initial run. This performs a Maven build, builds and launches the dockers configured in
 `docker-compose.yml` and launches the frontend.
 
