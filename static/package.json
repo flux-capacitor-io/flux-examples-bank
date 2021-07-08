@@ -2,13 +2,14 @@
   "name": "flux-bank",
   "version": "0.0.0",
   "scripts": {
-    "docker": "ng serve --configuration=docker --host=0.0.0.0",
+    "docker": "npm run generate-jwt-tokens && ng serve --configuration=docker --host=0.0.0.0",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "generate-jwt-tokens": "ts-node --project utils/jwt-generator/tsconfig.json utils/jwt-generator/src/index.ts"
   },
   "private": true,
   "dependencies": {
