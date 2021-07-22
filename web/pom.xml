@@ -12,7 +12,7 @@
     <artifactId>web</artifactId>
 
     <properties>
-        <undertow.version>2.0.23.Final</undertow.version>
+        <undertow.version>2.2.9.Final</undertow.version>
     </properties>
 
     <dependencies>
@@ -46,7 +46,7 @@
         <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>java-jwt</artifactId>
-            <version>3.8.1</version>
+            <version>3.18.1</version>
         </dependency>
     </dependencies>
 

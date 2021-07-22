@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk15:x86_64-alpine-jre-15.0.1_9
+FROM adoptopenjdk/openjdk16:x86_64-alpine-jre-16.0.1_9
 
 COPY target/app.jar /
 

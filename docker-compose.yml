@@ -1,7 +1,7 @@
 version: '3'
 services:
   flux-capacitor:
-    image: fluxcapacitorio/flux-capacitor-test:0.330
+    image: fluxcapacitorio/flux-capacitor-test:0.334
     ports:
       - "5200:5005" #debugging
 
