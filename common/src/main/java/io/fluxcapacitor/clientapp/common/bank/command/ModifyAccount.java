@@ -3,15 +3,10 @@ package io.fluxcapacitor.clientapp.common.bank.command;
 import io.fluxcapacitor.clientapp.common.IllegalCommandException;
 import io.fluxcapacitor.clientapp.common.bank.BankAccount;
 import io.fluxcapacitor.javaclient.modeling.AssertLegal;
-import io.fluxcapacitor.javaclient.publishing.routing.RoutingKey;
-
-import javax.validation.constraints.NotBlank;
 
 import static io.fluxcapacitor.javaclient.modeling.AssertLegal.HIGHEST_PRIORITY;
 
 public interface ModifyAccount extends AccountCommand {
-    @RoutingKey
-    @NotBlank
     String getAccountId();
 
     @AssertLegal(priority = HIGHEST_PRIORITY)
