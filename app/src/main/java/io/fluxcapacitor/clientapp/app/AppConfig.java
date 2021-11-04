@@ -22,7 +22,7 @@ public class AppConfig {
     @Bean
     @ConditionalOnProperty("endpoint.messaging")
     public Client fluxCapacitorClient() {
-        return WebSocketClient.newInstance(WebSocketClient.Properties.builder().name("app")
+        return WebSocketClient.newInstance(WebSocketClient.ClientConfig.builder().name("app")
                                                    .projectId("bank")
                                                    .serviceBaseUrl(getProperty("endpoint.messaging")).build());
     }

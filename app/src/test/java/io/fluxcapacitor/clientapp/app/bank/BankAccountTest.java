@@ -7,10 +7,12 @@ import io.fluxcapacitor.clientapp.common.bank.command.DepositMoney;
 import io.fluxcapacitor.clientapp.common.bank.command.DepositTransfer;
 import io.fluxcapacitor.clientapp.common.bank.command.RevertTransfer;
 import io.fluxcapacitor.clientapp.common.bank.command.TransferMoney;
+import io.fluxcapacitor.clientapp.common.bank.query.FindAccounts;
 import io.fluxcapacitor.javaclient.test.TestFixture;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.function.Predicate;
 
 class BankAccountTest {
@@ -22,7 +24,7 @@ class BankAccountTest {
     private static final RevertTransfer revertTransfer = new RevertTransfer("a", BigDecimal.TEN);
 
     private final TestFixture testFixture = TestFixture.create(new AccountCommandHandler(), new TransferEventHandler(),
-                                                               new AccountLifecycleHandler());
+                                                               new AccountLifecycleHandler(), new BankQueryHandler());
 
     @Test
     void testCreateAccount() {
@@ -64,5 +66,11 @@ class BankAccountTest {
         testFixture.givenCommands(createAccount, depositMoney)
                 .whenTimeElapses(AccountLifecycleHandler.MAX_INACTIVITY)
                 .expectNoEvents();
+    }
+
+    @Test
+    void testFindAccounts() {
+        testFixture.givenCommands(createAccount, depositMoney)
+                .whenQuery(new FindAccounts("user1")).<List<?>>expectResult(r -> r.size() == 1);
     }
 }
