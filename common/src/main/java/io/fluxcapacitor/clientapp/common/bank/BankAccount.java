@@ -8,7 +8,7 @@ import lombok.Value;
 import java.math.BigDecimal;
 import java.util.List;
 
-@Aggregate
+@Aggregate(searchable = true)
 @Value
 @Builder(toBuilder = true)
 public class BankAccount {
