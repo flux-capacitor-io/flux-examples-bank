@@ -9,7 +9,7 @@ import lombok.AllArgsConstructor;
 
 import java.util.List;
 
-import static com.google.common.base.Strings.isNullOrEmpty;
+import static org.apache.commons.lang3.StringUtils.isEmpty;
 
 @AllArgsConstructor
 public class CompositeJwtVerifier implements JWTVerifier {
@@ -18,7 +18,7 @@ public class CompositeJwtVerifier implements JWTVerifier {
 
     @Override
     public DecodedJWT verify(String token) throws JWTVerificationException {
-        if (isNullOrEmpty(token)) {
+        if (isEmpty(token)) {
             throw new UnauthenticatedException("Authorization header missing");
         }
         return verify(JWT.decode(token));

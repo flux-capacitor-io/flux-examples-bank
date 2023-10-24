@@ -1,6 +1,6 @@
 package io.fluxcapacitor.clientapp.common.bank;
 
-import io.fluxcapacitor.javaclient.persisting.eventsourcing.Aggregate;
+import io.fluxcapacitor.javaclient.modeling.Aggregate;
 import lombok.Builder;
 import lombok.Singular;
 import lombok.Value;

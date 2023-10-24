@@ -29,8 +29,7 @@ public class AppConfig {
 
     @Autowired
     public void configure(FluxCapacitorBuilder builder) {
-        builder.enableTrackingMetrics()
-                .addDispatchInterceptor(LoggingInterceptor.instance).addHandlerInterceptor(LoggingInterceptor.instance);
+        builder.addDispatchInterceptor(LoggingInterceptor.instance).addHandlerInterceptor(LoggingInterceptor.instance);
     }
 }
 

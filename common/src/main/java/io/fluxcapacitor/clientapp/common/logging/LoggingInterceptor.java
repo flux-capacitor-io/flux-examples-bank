@@ -1,8 +1,7 @@
 package io.fluxcapacitor.clientapp.common.logging;
 
 import io.fluxcapacitor.common.MessageType;
-import io.fluxcapacitor.common.api.SerializedMessage;
-import io.fluxcapacitor.common.handling.Handler;
+import io.fluxcapacitor.common.handling.HandlerInvoker;
 import io.fluxcapacitor.javaclient.common.Message;
 import io.fluxcapacitor.javaclient.common.serialization.DeserializingMessage;
 import io.fluxcapacitor.javaclient.publishing.DispatchInterceptor;
@@ -16,24 +15,21 @@ public enum LoggingInterceptor implements HandlerInterceptor, DispatchIntercepto
     instance;
 
     @Override
-    public Function<Message, SerializedMessage> interceptDispatch(Function<Message, SerializedMessage> function,
-                                                                  MessageType messageType) {
-        return m -> {
+    public Message interceptDispatch(Message message, MessageType messageType) {
             if (MessageType.METRICS != messageType) {
-                log.info("Sending {} {}", messageType.name().toLowerCase(), m.getPayload());
+                log.info("Sending {} {}", messageType.name().toLowerCase(), message.getPayload());
             }
-            return function.apply(m);
-        };
+            return message;
     }
 
     @Override
     public Function<DeserializingMessage, Object> interceptHandling(Function<DeserializingMessage, Object> function,
-                                                                    Handler<DeserializingMessage> handler,
+                                                                    HandlerInvoker handlerInvoker,
                                                                     String consumer) {
         return m -> {
             if (MessageType.METRICS != m.getMessageType()) {
                 log.info("Handling a {} {} in {}", m.getPayloadClass().getSimpleName(),
-                         m.getMessageType().name().toLowerCase(), handler);
+                         m.getMessageType().name().toLowerCase(), handlerInvoker);
             }
             return function.apply(m);
         };

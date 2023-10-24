@@ -23,8 +23,8 @@ import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-import static com.google.common.base.Suppliers.memoize;
 import static io.fluxcapacitor.clientapp.common.ApplicationUtils.isDevMode;
+import static io.fluxcapacitor.common.ObjectUtils.memoize;
 import static java.lang.System.getProperty;
 
 @Slf4j

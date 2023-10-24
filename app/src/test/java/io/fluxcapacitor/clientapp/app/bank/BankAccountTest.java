@@ -33,7 +33,7 @@ class BankAccountTest {
 
     @Test
     void testCreateAccountTwiceNotAllowed() {
-        testFixture.givenCommands(createAccount).whenCommand(createAccount).expectException(IllegalCommandException.class);
+        testFixture.givenCommands(createAccount).whenCommand(createAccount).expectError(IllegalCommandException.class);
     }
 
     @Test
@@ -45,7 +45,7 @@ class BankAccountTest {
     @Test
     void testTransferNotAllowedWithInsufficientFunds() {
         testFixture.givenCommands(createAccount, createAnotherAccount)
-                .whenCommand(transferMoney).expectException(IllegalCommandException.class).expectNoEvents();
+                .whenCommand(transferMoney).expectError(IllegalCommandException.class).expectNoEvents();
     }
 
     @Test

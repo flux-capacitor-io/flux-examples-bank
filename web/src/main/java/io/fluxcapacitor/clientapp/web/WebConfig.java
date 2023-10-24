@@ -21,15 +21,14 @@ public class WebConfig {
     @Bean
     @ConditionalOnProperty("endpoint.messaging")
     public Client fluxCapacitorClient() {
-        return WebSocketClient.newInstance(WebSocketClient.Properties.builder().name("web")
+        return WebSocketClient.newInstance(WebSocketClient.ClientConfig.builder().name("web")
                                                    .projectId("bank")
                                                    .serviceBaseUrl(getProperty("endpoint.messaging")).build());
     }
 
     @Autowired
     public void configure(FluxCapacitorBuilder builder) {
-        builder.enableTrackingMetrics()
-                .addDispatchInterceptor(LoggingInterceptor.instance).addHandlerInterceptor(LoggingInterceptor.instance);
+        builder.addDispatchInterceptor(LoggingInterceptor.instance).addHandlerInterceptor(LoggingInterceptor.instance);
     }
 }
 
