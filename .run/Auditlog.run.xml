@@ -6,7 +6,7 @@
       <env name="OPENSEARCH_URL" value="http://localhost:9200" />
       <env name="FLUX_BASE_URL" value="ws://localhost:8888" />
     </envs>
-    <option name="MAIN_CLASS_NAME" value="com.flowmaps.auditlog.Auditlog" />
+    <option name="MAIN_CLASS_NAME" value="com.example.flux.auditlog.Auditlog" />
     <module name="auditlog" />
     <method v="2">
       <option name="Make" enabled="true" />

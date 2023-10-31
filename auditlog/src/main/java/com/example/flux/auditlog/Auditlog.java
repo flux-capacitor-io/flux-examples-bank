@@ -1,6 +1,5 @@
-package com.flowmaps.auditlog;
+package com.example.flux.auditlog;
 
-import com.flowmaps.api.application.common.Environment;
 import io.fluxcapacitor.javaclient.configuration.ApplicationProperties;
 import io.fluxcapacitor.javaclient.configuration.FluxCapacitorBuilder;
 import io.fluxcapacitor.javaclient.configuration.client.Client;
@@ -22,7 +21,7 @@ import org.springframework.context.annotation.Import;
 public class Auditlog {
     public static void main(String... args) {
         new AnnotationConfigApplicationContext(Auditlog.class).registerShutdownHook();
-        log.info("Flowmaps auditlog is running (environment {})", Environment.getEnvironment());
+        //log.info("Flowmaps auditlog is running (environment {})", Environment.getEnvironment());
     }
 
     @Bean

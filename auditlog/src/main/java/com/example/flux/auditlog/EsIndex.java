@@ -1,4 +1,4 @@
-package com.flowmaps.auditlog;
+package com.example.flux.auditlog;
 
 import lombok.AllArgsConstructor;
 import lombok.ToString;

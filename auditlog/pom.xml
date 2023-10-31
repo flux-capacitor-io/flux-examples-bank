@@ -11,9 +11,16 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.flowmaps</groupId>
+            <groupId>io.flux-capacitor.examples</groupId>
             <artifactId>common</artifactId>
             <version>${project.version}</version>
+        </dependency>
+
+        <!--templating-->
+        <dependency>
+            <groupId>com.samskivert</groupId>
+            <artifactId>jmustache</artifactId>
+            <version>1.15</version>
         </dependency>
     </dependencies>
 
@@ -34,7 +41,7 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.flowmaps.auditlog.Auditlog</mainClass>
+                                    <mainClass>com.example.flux.auditlog.Auditlog</mainClass>
                                 </transformer>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>

@@ -1,4 +1,4 @@
-package com.flowmaps.auditlog;
+package com.example.flux.auditlog;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -58,7 +58,7 @@ public class OpenSearch {
 
     private static final Executor asyncResultExecutor = Executors.newFixedThreadPool(16);
     private static final Template bulkTemplate = Mustache.compiler().withEscaper(raw -> raw).compile(
-            loadFile(OpenSearch.class, "/com/flowmaps/auditlog/bulk.mustache"));
+            loadFile(OpenSearch.class, "/com/example/flux/auditlog/bulk.mustache"));
     private static final String endPoint = getProperty("OPENSEARCH_URL");
 
     private static final ObjectMapper objectMapper =
@@ -140,7 +140,7 @@ public class OpenSearch {
     @SneakyThrows
     public void initialize() {
         var putLogIndexTemplate = requestBuilder(endPoint + "/_index_template/log")
-                .PUT(BodyPublishers.ofString(loadFile("/com/flowmaps/auditlog/index-template-log.json")))
+                .PUT(BodyPublishers.ofString(loadFile("/com/example/flux/auditlog/index-template-log.json")))
                 .build();
         try (var ignored = retryRequest(putLogIndexTemplate)) {
             log.info("Created log index template");

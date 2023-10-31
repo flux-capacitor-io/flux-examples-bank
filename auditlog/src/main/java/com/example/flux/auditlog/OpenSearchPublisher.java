@@ -1,8 +1,7 @@
-package com.flowmaps.auditlog;
+package com.example.flux.auditlog;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.flowmaps.auditlog.OpenSearch.Operation;
 import io.fluxcapacitor.common.MessageType;
 import io.fluxcapacitor.common.Registration;
 import io.fluxcapacitor.common.api.Metadata;
@@ -40,7 +39,6 @@ import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Consumer;
 
-import static com.flowmaps.auditlog.OpenSearch.Operation.Action.create;
 import static io.fluxcapacitor.common.MessageType.ERROR;
 import static io.fluxcapacitor.common.MessageType.METRICS;
 import static io.fluxcapacitor.common.MessageType.SCHEDULE;
@@ -111,7 +109,7 @@ public class OpenSearchPublisher implements InitializingBean, DisposableBean {
                                                   .orElseGet(() -> aliases.compute(aliasName,
                                                                                    (k, v) -> List.of(aliasName))));
 
-            var operations = new ArrayList<Operation>();
+            var operations = new ArrayList<OpenSearch.Operation>();
 
             messages.forEach(m -> {
                 var esIndex = type.getEsIndex();
@@ -121,7 +119,7 @@ public class OpenSearchPublisher implements InitializingBean, DisposableBean {
                     }
                     aliases.put(aliasName, indices);
                 }
-                operations.add(new Operation(create, esIndex.getIndex(), messageType.name() + m.getIndex(),
+                operations.add(new OpenSearch.Operation(OpenSearch.Operation.Action.create, esIndex.getIndex(), messageType.name() + m.getIndex(),
                                              createEntry(messageType, m)));
             });
             var errors = openSearch.bulk(operations).stream().filter(Objects::nonNull).toList();
