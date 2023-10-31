@@ -4,6 +4,7 @@ import io.fluxcapacitor.clientapp.common.bank.command.DepositTransfer;
 import io.fluxcapacitor.clientapp.common.bank.command.RevertTransfer;
 import io.fluxcapacitor.clientapp.common.bank.command.TransferMoney;
 import io.fluxcapacitor.javaclient.FluxCapacitor;
+import io.fluxcapacitor.javaclient.tracking.Consumer;
 import io.fluxcapacitor.javaclient.tracking.handling.HandleError;
 import io.fluxcapacitor.javaclient.tracking.handling.HandleEvent;
 import io.fluxcapacitor.javaclient.tracking.handling.Trigger;
@@ -12,7 +13,8 @@ import org.springframework.stereotype.Component;
 import static io.fluxcapacitor.common.MessageType.COMMAND;
 
 @Component
-public class TransferEventHandler {
+@Consumer(name = "transfers-consumer")
+public class TransferHandler {
     @HandleEvent
     void handle(TransferMoney command) {
         FluxCapacitor.sendAndForgetCommand(

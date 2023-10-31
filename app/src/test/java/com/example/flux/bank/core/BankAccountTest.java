@@ -26,7 +26,7 @@ class BankAccountTest {
     private static final RevertTransfer revertTransfer = new RevertTransfer(new AccountId("a"), BigDecimal.TEN);
 
     final TestFixture testFixture = TestFixture.create(
-            new AccountCommandHandler(), new TransferEventHandler(), new AccountLifecycleHandler());
+            new CoreHandler(), new TransferHandler(), new AccountLifecycleHandler());
 
     @Test
     void testCreateAccount() {
@@ -62,7 +62,7 @@ class BankAccountTest {
     class TransferTests {
 
         final TestFixture testFixture = TestFixture.createAsync(
-                new AccountCommandHandler(), new TransferEventHandler(), new AccountLifecycleHandler());
+                new CoreHandler(), new TransferHandler(), new AccountLifecycleHandler());
 
         @Test
         void testMoneyTransfer() {
