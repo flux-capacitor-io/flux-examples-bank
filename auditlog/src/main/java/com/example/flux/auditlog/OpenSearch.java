@@ -51,7 +51,6 @@ import static java.util.function.Function.identity;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toMap;
 
-;
 
 @Slf4j
 public class OpenSearch {

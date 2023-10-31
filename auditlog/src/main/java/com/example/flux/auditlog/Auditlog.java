@@ -21,7 +21,7 @@ import org.springframework.context.annotation.Import;
 public class Auditlog {
     public static void main(String... args) {
         new AnnotationConfigApplicationContext(Auditlog.class).registerShutdownHook();
-        //log.info("Flowmaps auditlog is running (environment {})", Environment.getEnvironment());
+        log.info("Flowmaps auditlog is running");
     }
 
     @Bean
@@ -29,7 +29,7 @@ public class Auditlog {
     public Client fluxCapacitorClient() {
         return WebSocketClient.newInstance(
                 WebSocketClient.ClientConfig.builder()
-                        .name("flowmaps-auditlog")
+                        .name("banking-auditlog")
                         .projectId(ApplicationProperties.getProperty("PROJECT_ID"))
                         .serviceBaseUrl(ApplicationProperties.getProperty("FLUX_BASE_URL"))
                         .build());

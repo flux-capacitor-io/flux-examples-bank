@@ -30,7 +30,7 @@ public class BankingApp {
     public Client fluxCapacitorClient() {
         return WebSocketClient.newInstance(
                 WebSocketClient.ClientConfig.builder()
-                        .name("banking")
+                        .name("banking-app")
                         .projectId(getProperty("PROJECT_ID"))
                         .serviceBaseUrl(getProperty("FLUX_URL"))
                         .build());
