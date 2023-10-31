@@ -23,7 +23,7 @@ public class TransferHandler {
     }
 
     @HandleError
-    void handle(@Trigger(messageType = COMMAND) DepositTransfer trigger) {
+    void handle(@Trigger(messageType = COMMAND) DepositTransfer trigger, Throwable exception) {
         FluxCapacitor.sendAndForgetCommand(new RollBackTransfer(trigger.getSourceAccountId(), trigger.getAmount()));
     }
 }

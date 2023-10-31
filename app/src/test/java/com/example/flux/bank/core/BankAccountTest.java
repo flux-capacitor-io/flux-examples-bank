@@ -80,7 +80,7 @@ class BankAccountTest {
         void testTransferNotAllowedIfOtherAccountDoesNotExist() {
             testFixture
                     .givenCommands(createAccount, depositMoney)
-                    .whenCommand(transferMoney).expectEvents(transferRollback);
+                    .whenCommand(transferMoney).expectOnlyEvents(transferMoney, transferRollback);
         }
 
     }
