@@ -5,7 +5,7 @@ import io.fluxcapacitor.clientapp.common.bank.command.CloseAccount;
 import io.fluxcapacitor.clientapp.common.bank.command.CreateAccount;
 import io.fluxcapacitor.clientapp.common.bank.command.DepositMoney;
 import io.fluxcapacitor.clientapp.common.bank.command.DepositTransfer;
-import io.fluxcapacitor.clientapp.common.bank.command.RevertTransfer;
+import io.fluxcapacitor.clientapp.common.bank.command.RollBackTransfer;
 import io.fluxcapacitor.clientapp.common.bank.command.TransferMoney;
 import io.fluxcapacitor.clientapp.common.bank.query.FindAccounts;
 import io.fluxcapacitor.javaclient.test.TestFixture;
@@ -23,7 +23,7 @@ class BankAccountTest {
     private static final DepositMoney depositMoney = new DepositMoney(new AccountId("a"), new BigDecimal(100));
     private static final TransferMoney transferMoney = new TransferMoney(new AccountId("a"), new AccountId("b"), BigDecimal.TEN);
     private static final DepositTransfer depositTransfer = new DepositTransfer(new AccountId("b"), new AccountId("a"), BigDecimal.TEN);
-    private static final RevertTransfer revertTransfer = new RevertTransfer(new AccountId("a"), BigDecimal.TEN);
+    private static final RollBackTransfer transferRollback = new RollBackTransfer(new AccountId("a"), BigDecimal.TEN);
 
     final TestFixture testFixture = TestFixture.create(
             new CoreHandler(), new TransferHandler(), new AccountLifecycleHandler());
@@ -80,7 +80,7 @@ class BankAccountTest {
         void testTransferNotAllowedIfOtherAccountDoesNotExist() {
             testFixture
                     .givenCommands(createAccount, depositMoney)
-                    .whenCommand(transferMoney).expectEvents(revertTransfer);
+                    .whenCommand(transferMoney).expectEvents(transferRollback);
         }
 
     }

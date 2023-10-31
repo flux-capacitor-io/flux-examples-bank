@@ -1,7 +1,7 @@
 package com.example.flux.bank.core;
 
 import io.fluxcapacitor.clientapp.common.bank.command.DepositTransfer;
-import io.fluxcapacitor.clientapp.common.bank.command.RevertTransfer;
+import io.fluxcapacitor.clientapp.common.bank.command.RollBackTransfer;
 import io.fluxcapacitor.clientapp.common.bank.command.TransferMoney;
 import io.fluxcapacitor.javaclient.FluxCapacitor;
 import io.fluxcapacitor.javaclient.tracking.Consumer;
@@ -24,6 +24,6 @@ public class TransferHandler {
 
     @HandleError
     void handle(@Trigger(messageType = COMMAND) DepositTransfer trigger) {
-        FluxCapacitor.sendAndForgetCommand(new RevertTransfer(trigger.getSourceAccountId(), trigger.getAmount()));
+        FluxCapacitor.sendAndForgetCommand(new RollBackTransfer(trigger.getSourceAccountId(), trigger.getAmount()));
     }
 }

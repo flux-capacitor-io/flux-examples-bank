@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 
 @Value
 @RequiresRole(Role.system)
-public class RevertTransfer implements ModifyAccount {
+public class RollBackTransfer implements ModifyAccount {
     AccountId accountId;
     @NotNull @Positive BigDecimal amount;
 
