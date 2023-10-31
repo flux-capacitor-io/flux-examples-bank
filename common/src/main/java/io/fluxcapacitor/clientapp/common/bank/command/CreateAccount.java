@@ -22,9 +22,7 @@ public class CreateAccount implements AccountCommand, CustomerCommand {
 
     @AssertLegal
     void assertNotExists(BankAccount account) {
-        if (account != null) {
-            throw new IllegalCommandException("Bank account already exists");
-        }
+        throw new IllegalCommandException("Bank account already exists");
     }
 
     @Apply
