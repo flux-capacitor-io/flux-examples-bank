@@ -1,0 +1,58 @@
+{
+  "index_patterns" : [
+    "*log"
+  ],
+  "data_stream" : {},
+  "priority" : 100,
+  "template" : {
+    "settings" : {
+      "index" : {
+        "number_of_shards" : 1,
+        "number_of_replicas" : 0
+      },
+      "analysis" : {
+        "analyzer" : {
+          "folding" : {
+            "tokenizer" : "standard",
+            "filter" : [
+              "lowercase",
+              "asciifolding"
+            ]
+          }
+        },
+        "normalizer" : {
+          "lowerasciinormalizer" : {
+            "type" : "custom",
+            "filter" : [
+              "lowercase",
+              "asciifolding"
+            ]
+          }
+        }
+      }
+    },
+    "mappings" : {
+      "properties" : {
+        "payload" : {
+          "type" : "text"
+        }
+      },
+      "dynamic_templates" : [
+        {
+          "strings" : {
+            "match_mapping_type" : "string",
+            "mapping" : {
+              "type" : "text",
+              "fields" : {
+                "keyword" : {
+                  "type" : "keyword",
+                  "ignore_above" : 256
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

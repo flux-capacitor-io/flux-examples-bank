@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Auditlog" type="Application" factoryName="Application">
+    <envs>
+      <env name="AUDITLOG_PASSWORD" value="admin" />
+      <env name="AUDITLOG_USER" value="admin" />
+      <env name="OPENSEARCH_URL" value="http://localhost:9200" />
+      <env name="FLUX_BASE_URL" value="ws://localhost:8888" />
+    </envs>
+    <option name="MAIN_CLASS_NAME" value="com.flowmaps.auditlog.Auditlog" />
+    <module name="auditlog" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

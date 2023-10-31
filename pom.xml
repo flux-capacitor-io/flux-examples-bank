@@ -11,6 +11,7 @@
     <modules>
         <module>common</module>
         <module>app</module>
+        <module>auditlog</module>
     </modules>
 
     <name>Flux Capacitor app</name>
