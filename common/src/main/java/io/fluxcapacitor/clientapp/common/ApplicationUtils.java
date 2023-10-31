@@ -8,9 +8,6 @@ import org.springframework.context.annotation.ClassPathScanningCandidateComponen
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.type.filter.AnnotationTypeFilter;
 
-import java.util.Optional;
-
-import static java.lang.System.getProperty;
 import static java.util.Arrays.stream;
 import static java.util.stream.Collectors.toList;
 
@@ -29,10 +26,6 @@ public class ApplicationUtils {
 
         log.info("Loaded Spring configurations: {}",
                  stream(configurations).map(Class::getSimpleName).collect(toList()));
-    }
-
-    public static boolean isDevMode() {
-        return Optional.ofNullable(getProperty("devMode")).map(Boolean::valueOf).orElse(false);
     }
 
     @SneakyThrows

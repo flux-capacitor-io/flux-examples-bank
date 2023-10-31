@@ -1,11 +1,11 @@
 package io.fluxcapacitor.clientapp.common.bank;
 
 import io.fluxcapacitor.javaclient.common.serialization.DeserializingMessage;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Value;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.Instant;
 
 @Value

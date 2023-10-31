@@ -1,11 +1,11 @@
 package io.fluxcapacitor.clientapp.common.bank.command;
 
+import io.fluxcapacitor.clientapp.common.bank.AccountId;
 import io.fluxcapacitor.javaclient.publishing.routing.RoutingKey;
-
-import javax.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public interface AccountCommand {
     @RoutingKey
-    @NotBlank
-    String getAccountId();
+    @NotNull
+    AccountId getAccountId();
 }

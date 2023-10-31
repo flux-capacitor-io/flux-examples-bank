@@ -1,14 +1,13 @@
 package io.fluxcapacitor.clientapp.common.bank.command;
 
-import io.fluxcapacitor.clientapp.common.IllegalCommandException;
 import io.fluxcapacitor.clientapp.common.bank.BankAccount;
 import io.fluxcapacitor.javaclient.modeling.AssertLegal;
+import io.fluxcapacitor.javaclient.tracking.handling.IllegalCommandException;
 import jakarta.annotation.Nullable;
 
 import static io.fluxcapacitor.javaclient.modeling.AssertLegal.HIGHEST_PRIORITY;
 
 public interface ModifyAccount extends AccountCommand {
-    String getAccountId();
 
     @AssertLegal(priority = HIGHEST_PRIORITY)
     default void assertExists(@Nullable BankAccount account) {

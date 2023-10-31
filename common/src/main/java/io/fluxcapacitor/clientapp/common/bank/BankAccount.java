@@ -12,7 +12,8 @@ import java.util.List;
 @Value
 @Builder(toBuilder = true)
 public class BankAccount {
-    String accountId, userId;
+    AccountId accountId;
+    String userId;
     BigDecimal maxOverdraft;
     boolean closed;
 

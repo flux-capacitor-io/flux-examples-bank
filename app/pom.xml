@@ -13,16 +13,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>io.flux-capacitor.examples</groupId>
             <artifactId>common</artifactId>
             <version>${project.version}</version>
-        </dependency>
-
-        <!-- testing -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
@@ -43,7 +36,7 @@
                             <transformers>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>io.fluxcapacitor.clientapp.app.AppMain</mainClass>
+                                    <mainClass>com.example.flux.bank.BankingApp</mainClass>
                                 </transformer>
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />

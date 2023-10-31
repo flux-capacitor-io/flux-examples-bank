@@ -1,19 +1,20 @@
 package io.fluxcapacitor.clientapp.common.bank.command;
 
-import io.fluxcapacitor.clientapp.common.IllegalCommandException;
+import io.fluxcapacitor.clientapp.common.bank.AccountId;
 import io.fluxcapacitor.clientapp.common.bank.BankAccount;
 import io.fluxcapacitor.clientapp.common.bank.Transaction;
 import io.fluxcapacitor.javaclient.modeling.AssertLegal;
 import io.fluxcapacitor.javaclient.persisting.eventsourcing.Apply;
+import io.fluxcapacitor.javaclient.tracking.handling.IllegalCommandException;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Value;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 @Value
-public class WithdrawMoney extends CustomerCommand implements ModifyAccount {
-    String accountId;
+public class WithdrawMoney implements ModifyAccount, CustomerCommand {
+    AccountId accountId;
     @NotNull @Positive BigDecimal amount;
 
     @AssertLegal

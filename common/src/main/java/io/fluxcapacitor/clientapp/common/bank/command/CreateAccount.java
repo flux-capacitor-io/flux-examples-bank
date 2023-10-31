@@ -1,20 +1,21 @@
 package io.fluxcapacitor.clientapp.common.bank.command;
 
-import io.fluxcapacitor.clientapp.common.IllegalCommandException;
+import io.fluxcapacitor.clientapp.common.bank.AccountId;
 import io.fluxcapacitor.clientapp.common.bank.BankAccount;
 import io.fluxcapacitor.javaclient.modeling.AssertLegal;
 import io.fluxcapacitor.javaclient.persisting.eventsourcing.Apply;
+import io.fluxcapacitor.javaclient.tracking.handling.IllegalCommandException;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Builder;
 import lombok.Value;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
 
 @Value
 @Builder
-public class CreateAccount extends CustomerCommand implements AccountCommand {
-    String accountId;
+public class CreateAccount implements AccountCommand, CustomerCommand {
+    AccountId accountId;
     @NotBlank String userId;
 
     @PositiveOrZero BigDecimal maxOverdraft;

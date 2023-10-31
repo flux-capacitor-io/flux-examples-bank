@@ -2,18 +2,11 @@ package io.fluxcapacitor.clientapp.common.authentication;
 
 import lombok.Getter;
 
-import java.util.EnumSet;
-
 @Getter
 public enum Role {
     customer,
-    system,
-    admin {
-        @Override
-        public Role[] getAssumedRoles() {
-            return EnumSet.complementOf(EnumSet.of(admin)).toArray(new Role[0]);
-        }
-    };
+    admin(customer),
+    system(admin);
 
     private final Role[] assumedRoles;
 
@@ -31,12 +24,15 @@ public enum Role {
         return matches(role);
     }
 
-    private boolean matches(Role role) {
-        if (this == role) {
+    public boolean matches(Role userRole) {
+        if (userRole == null) {
+            return false;
+        }
+        if (this == userRole) {
             return true;
         }
-        for (Role assumedRole : role.getAssumedRoles()) {
-            if (assumedRole.matches(this)) {
+        for (Role assumedRole : userRole.getAssumedRoles()) {
+            if (matches(assumedRole)) {
                 return true;
             }
         }

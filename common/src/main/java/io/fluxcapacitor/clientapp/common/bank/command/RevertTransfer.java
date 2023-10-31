@@ -1,20 +1,21 @@
 package io.fluxcapacitor.clientapp.common.bank.command;
 
-import io.fluxcapacitor.clientapp.common.authentication.RequiresAppRole;
+import io.fluxcapacitor.clientapp.common.authentication.RequiresRole;
 import io.fluxcapacitor.clientapp.common.authentication.Role;
+import io.fluxcapacitor.clientapp.common.bank.AccountId;
 import io.fluxcapacitor.clientapp.common.bank.BankAccount;
 import io.fluxcapacitor.clientapp.common.bank.Transaction;
 import io.fluxcapacitor.javaclient.persisting.eventsourcing.Apply;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.Value;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
 import java.math.BigDecimal;
 
 @Value
-@RequiresAppRole(Role.system)
+@RequiresRole(Role.system)
 public class RevertTransfer implements ModifyAccount {
-    String accountId;
+    AccountId accountId;
     @NotNull @Positive BigDecimal amount;
 
     @Apply

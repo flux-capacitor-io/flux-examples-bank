@@ -1,1 +1,1 @@
-io.fluxcapacitor.clientapp.common.authentication.AppUserProvider
+io.fluxcapacitor.clientapp.common.authentication.SenderProvider
