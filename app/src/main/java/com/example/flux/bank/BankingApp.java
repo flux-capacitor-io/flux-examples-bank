@@ -26,13 +26,13 @@ public class BankingApp {
     }
 
     @Bean
-    @ConditionalOnProperty("FLUX_BASE_URL")
+    @ConditionalOnProperty("FLUX_URL")
     public Client fluxCapacitorClient() {
         return WebSocketClient.newInstance(
                 WebSocketClient.ClientConfig.builder()
                         .name("banking")
                         .projectId(getProperty("PROJECT_ID"))
-                        .serviceBaseUrl(getProperty("FLUX_BASE_URL"))
+                        .serviceBaseUrl(getProperty("FLUX_URL"))
                         .build());
     }
 

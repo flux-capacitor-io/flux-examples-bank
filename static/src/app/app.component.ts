@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {CookieService} from 'ngx-cookie';
 import tokens from "../../utils/jwt-generator/src/tokens";
-import {environment} from '../environments/environment';
 import {sendQuery} from './common/query-gateway';
 import {sendCommand} from './common/command-gateway';
 import {AppContext} from './app-context';
@@ -20,13 +19,11 @@ export const userId = "admin@flux-bank.com";
 export class AppComponent {
   account;
 
-  constructor(private httpClient: HttpClient, cookieService: CookieService) {
-    if (environment.connected) {
-      cookieService.put("jwt", tokens[userId]);
+  constructor(httpClient: HttpClient, cookieService: CookieService) {
+    cookieService.put("jwt", tokens[userId]);
 
-      httpClient.get("/api/health", {responseType: 'text'})
-        .subscribe(() => console.log("server healthy"));
-    }
+    httpClient.get("/api/health", {responseType: 'text'})
+      .subscribe(() => console.log("server healthy"));
   }
 
   createAccount(createCommand, modal) {

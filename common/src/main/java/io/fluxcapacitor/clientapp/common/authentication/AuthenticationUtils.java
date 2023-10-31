@@ -3,7 +3,6 @@ package io.fluxcapacitor.clientapp.common.authentication;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import com.auth0.jwt.interfaces.JWTVerifier;
 import io.fluxcapacitor.clientapp.common.user.UserId;
 import io.fluxcapacitor.clientapp.common.user.UserProfile;
 import io.fluxcapacitor.javaclient.FluxCapacitor;
@@ -29,7 +28,7 @@ public class AuthenticationUtils {
 
     private static final Algorithm algorithm = createAlgorithm();
     private static final Function<HttpCookie, Sender> verifier = createCookieVerifier();
-    private static final String cookieName = "fluxjwt";
+    private static final String cookieName = "jwt";
 
     public static Sender getSender(WebRequest request) {
         return request.getCookie(cookieName).map(verifier).orElse(null);
@@ -57,7 +56,7 @@ public class AuthenticationUtils {
     public static String createJwtToken(UserProfile user, Duration duration) {
         var now = FluxCapacitor.currentClock().instant();
         return JWT.create()
-                .withKeyId("fluxjwt")
+                .withKeyId("jwt")
                 .withSubject(user.getUserId().getFunctionalId())
                 .withIssuedAt(Date.from(now))
                 .withExpiresAt(Date.from(now.plus(duration)))
@@ -66,17 +65,13 @@ public class AuthenticationUtils {
 
     @SneakyThrows
     private static Function<HttpCookie, Sender> createCookieVerifier() {
-        JWTVerifier v = createVerifier();
-        return token -> createSender(v.verify(decode(token)));
+        return token -> createSender(decode(token));
     }
 
     private static Sender createSender(DecodedJWT decodedJWT) {
         UserId userId = new UserId(decodedJWT.getSubject());
-        UserProfile userProfile = FluxCapacitor.loadAggregate(userId).get();
-        if (userProfile == null) {
-            throw new UnauthenticatedException("User does not exist");
-        }
-        return Sender.builder().userId(userId).userRole(userProfile.getUserRole()).build();
+        return Sender.builder().userId(userId).userRole(
+                Role.valueOf(decodedJWT.getClaim("roles").asList(String.class).get(0))).build();
     }
 
     private static DecodedJWT decode(HttpCookie cookie) {
@@ -84,11 +79,6 @@ public class AuthenticationUtils {
             throw new UnauthenticatedException("Authorization header missing");
         }
         return JWT.decode(cookie.getValue());
-    }
-
-    @SneakyThrows
-    private static JWTVerifier createVerifier() {
-        return JWT.require(algorithm).acceptLeeway(7 * 60).build();
     }
 
     @SneakyThrows

@@ -1,5 +1,8 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="BankingApp" type="Application" factoryName="Application" nameIsGenerated="true">
+    <envs>
+      <env name="FLUX_URL" value="http://localhost:8888" />
+    </envs>
     <option name="MAIN_CLASS_NAME" value="com.example.flux.bank.BankingApp" />
     <module name="app" />
     <extension name="coverage">

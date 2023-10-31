@@ -88,15 +88,12 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "flux-bank:build"
+            "browserTarget": "flux-bank:build",
+            "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
               "browserTarget": "flux-bank:build:production"
-            },
-            "docker": {
-              "browserTarget": "flux-bank:build:docker",
-              "proxyConfig": "proxy.conf.json"
             }
           }
         },
@@ -137,5 +134,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }
