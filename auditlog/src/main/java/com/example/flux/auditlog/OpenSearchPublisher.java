@@ -72,7 +72,7 @@ public class OpenSearchPublisher implements InitializingBean, DisposableBean {
         this.openSearch.initialize();
         this.registration = trackedMessageTypes.stream()
                 .filter(m -> ElasticIndex.of(m) != null) //
-                .map(this::startTracking).reduce(Registration::merge).orElse(Registration.noOp());
+                .map(this::startTracking).reduce(Registration.noOp(), Registration::merge);
     }
 
     private Registration startTracking(MessageType messageType) {
@@ -213,7 +213,7 @@ public class OpenSearchPublisher implements InitializingBean, DisposableBean {
                         case "io.fluxcapacitor.common.api.eventsourcing.AppendEvents$Metric" -> {
                             AppendEvents.Metric event = serializer.deserialize(m.getData());
                             value.put("size", event.getEventBatches().stream().map(EventBatch.Metric::getSize)
-                                    .reduce(Integer::sum));
+                                    .reduce(0, Integer::sum));
 
                         }
                         case "io.fluxcapacitor.common.api.eventsourcing.GetEvents" -> {
