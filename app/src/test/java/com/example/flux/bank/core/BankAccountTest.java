@@ -15,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.function.Predicate;
 
 class BankAccountTest {
     private static final CreateAccount createAccount = CreateAccount.builder().accountId(new AccountId("a")).userId("user1").build();
@@ -42,7 +41,7 @@ class BankAccountTest {
     void testNewAccountIsClosedAfterInactivity() {
         testFixture.givenCommands(createAccount)
                 .whenTimeElapses(AccountLifecycleHandler.MAX_INACTIVITY)
-                .expectEvents((Predicate<Object>) e -> e instanceof CloseAccount);
+                .expectEvents(CloseAccount.class);
     }
 
     @Test

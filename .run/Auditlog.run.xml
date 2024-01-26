@@ -8,6 +8,7 @@
     </envs>
     <option name="MAIN_CLASS_NAME" value="com.example.flux.auditlog.Auditlog" />
     <module name="auditlog" />
+    <option name="VM_PARAMETERS" value="-Dflux.logging-level=OFF" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>
