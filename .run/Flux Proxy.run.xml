@@ -1,11 +1,11 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Flux proxy" type="Application" factoryName="Application">=
+  <configuration default="false" name="Flux Proxy" type="Application" factoryName="Application">
     <envs>
       <env name="FLUX_URL" value="ws://localhost:8888" />
       <env name="PROXY_PORT" value="8080" />
     </envs>
     <option name="MAIN_CLASS_NAME" value="io.fluxcapacitor.proxy.ProxyServer" />
-    <module name="app" />
+    <module name="flux-examples-bank" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

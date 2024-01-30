@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="BankingApp" type="Application" factoryName="Application" nameIsGenerated="true">
+  <configuration default="false" name="Banking app" type="Application" factoryName="Application">
     <envs>
       <env name="FLUX_URL" value="http://localhost:8888" />
     </envs>

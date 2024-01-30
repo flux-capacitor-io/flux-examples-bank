@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Backend only" type="CompoundRunConfigurationType">
+    <toRun name="Banking app" type="Application" />
+    <toRun name="Flux Proxy" type="Application" />
+    <toRun name="Flux Test" type="Application" />
+    <method v="2" />
+  </configuration>
+</component>
