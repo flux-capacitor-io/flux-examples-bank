@@ -8,7 +8,6 @@ set -e
 
 printf "\n%s\n" "${blue}${bold}----------------------Starting frontend----------------------${reset}"
 npm install --prefix static
-npm run --prefix static generate-jwt-tokens
 npm run --prefix static start
 
 printf "\n%s\n" "${blue}${bold}-----------------------------Done------------------------------${reset}"
