@@ -1,7 +1,7 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Backend + frontend UI" type="CompoundRunConfigurationType">
     <toRun name="Backend only" type="CompoundRunConfigurationType" />
-    <toRun name="ng serve" type="js.build_tools.npm" />
+    <toRun name="Frontend UI (via shell)" type="ShConfigurationType" />
     <method v="2" />
   </configuration>
 </component>

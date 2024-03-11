@@ -22,7 +22,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <flux-capacitor.version>0.855.0</flux-capacitor.version>
+        <flux-capacitor.version>0.869.0</flux-capacitor.version>
     </properties>
 
     <dependencies>
