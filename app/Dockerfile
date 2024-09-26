@@ -1,4 +1,4 @@
-FROM eclipse-temurin:21-jre
+FROM eclipse-temurin:21-jre-alpine
 
 RUN addgroup --system javauser && adduser --system --shell /bin/false --ingroup javauser javauser
 COPY --chown=javauser:javauser target/app.jar app.jar
