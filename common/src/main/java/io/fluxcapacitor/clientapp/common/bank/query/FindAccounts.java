@@ -17,6 +17,6 @@ public class FindAccounts implements Request<List<BankAccount>> {
 
     @HandleQuery
     List<BankAccount> handle() {
-        return FluxCapacitor.search(BankAccount.class.getSimpleName()).lookAhead(term).fetch(100);
+        return FluxCapacitor.search(BankAccount.class).lookAhead(term).fetch(100);
     }
 }

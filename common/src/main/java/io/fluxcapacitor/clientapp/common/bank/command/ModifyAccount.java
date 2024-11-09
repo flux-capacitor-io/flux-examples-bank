@@ -5,11 +5,9 @@ import io.fluxcapacitor.javaclient.modeling.AssertLegal;
 import io.fluxcapacitor.javaclient.tracking.handling.IllegalCommandException;
 import jakarta.annotation.Nullable;
 
-import static io.fluxcapacitor.javaclient.modeling.AssertLegal.HIGHEST_PRIORITY;
-
 public interface ModifyAccount extends AccountCommand {
 
-    @AssertLegal(priority = HIGHEST_PRIORITY)
+    @AssertLegal
     default void assertExists(@Nullable BankAccount account) {
         if (account == null) {
             throw new IllegalCommandException("Bank account not found");

@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 class BankAccountTest {
     private static final CreateAccount createAccount = CreateAccount.builder().accountId(new AccountId("a")).userId("user1").build();
@@ -54,7 +53,7 @@ class BankAccountTest {
     @Test
     void testFindAccounts() {
         testFixture.givenCommands(createAccount, depositMoney)
-                .whenQuery(new FindAccounts("user1")).<List<?>>expectResult(r -> r.size() == 1);
+                .whenQuery(new FindAccounts("user1")).expectResult(accounts -> accounts.size() == 1);
     }
 
     @Nested
@@ -79,7 +78,8 @@ class BankAccountTest {
         void testTransferNotAllowedIfOtherAccountDoesNotExist() {
             testFixture
                     .givenCommands(createAccount, depositMoney)
-                    .whenCommand(transferMoney).expectOnlyEvents(transferMoney, transferRollback);
+                    .whenCommand(transferMoney)
+                    .expectOnlyEvents(transferMoney, transferRollback);
         }
 
     }

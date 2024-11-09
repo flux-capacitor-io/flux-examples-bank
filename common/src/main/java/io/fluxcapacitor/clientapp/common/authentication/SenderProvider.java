@@ -26,6 +26,12 @@ public class SenderProvider extends AbstractUserProvider {
     }
 
     @Override
+    public User getUserById(Object userId) {
+        return userId == null ? null : Sender.builder().userId(
+                userId instanceof UserId uId ? uId : new UserId(userId.toString())).build();
+    }
+
+    @Override
     public User getSystemUser() {
         return system;
     }
